@@ -341,7 +341,10 @@ class WC_Structured_Data {
 				$markup['itemListElement'][ $key ]['item'] += array( '@id' => $crumb[1] );
 			}
 		}
-
+		if(is_product() && $markup['@type']=='BreadcrumbList'){
+            $c_markup=count($markup['itemListElement'])-1;
+            unset($markup['itemListElement'][$c_markup]);
+        }
 		$this->set_data( apply_filters( 'woocommerce_structured_data_breadcrumblist', $markup, $breadcrumbs ) );
 	}
 
